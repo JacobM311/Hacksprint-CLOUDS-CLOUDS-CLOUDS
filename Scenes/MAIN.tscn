@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://tmfmph54d6dl"]
+
+[ext_resource type="Script" path="res://Scripts/MAIN.gd" id="1_u1enu"]
+[ext_resource type="Texture2D" uid="uid://bs5vwwtbki1tu" path="res://Shaders/086_hdrmaps_com_free.exr" id="2_tkx73"]
+[ext_resource type="PackedScene" uid="uid://dw37ns72pp1wt" path="res://Scenes/player.tscn" id="3_ep3dt"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="4_wxqjs"]
+[ext_resource type="PackedScene" uid="uid://ba4btspugshgq" path="res://Scenes/cloud_static.tscn" id="5_ydkyq"]
+[ext_resource type="PackedScene" uid="uid://bswgboxvk8pbl" path="res://Scenes/skyscraper.tscn" id="6_paxwa"]
+[ext_resource type="PackedScene" uid="uid://ctmgj6kelqqby" path="res://Scenes/cloud_left_right.tscn" id="7_gbagt"]
+[ext_resource type="PackedScene" uid="uid://dnusnahhyrmip" path="res://Scenes/cloud_up_down.tscn" id="8_vkutb"]
+[ext_resource type="PackedScene" uid="uid://cnr7jf01gjv47" path="res://Scenes/cloud_back_forth.tscn" id="9_ti417"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tstiv"]
+panorama = ExtResource("2_tkx73")
+
+[sub_resource type="Sky" id="Sky_i8ci6"]
+sky_material = SubResource("PanoramaSkyMaterial_tstiv")
+
+[sub_resource type="Environment" id="Environment_o61md"]
+background_mode = 2
+sky = SubResource("Sky_i8ci6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_takek"]
+script/source = "extends Node3D
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_u1enu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o61md")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="player" parent="." instance=ExtResource("3_ep3dt")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 1.17, 0)
+jump_height = 6.0
+speed = 2.5
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.05274, 1.34089, 0)
+script = ExtResource("4_wxqjs")
+player = NodePath("../player")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = SubResource("GDScript_takek")
+
+[node name="cloud_4" parent="Node3D" groups=["clouds"] instance=ExtResource("5_ydkyq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.216713, -1.09566, -28.3445)
+
+[node name="cloud_3" parent="Node3D" groups=["clouds"] instance=ExtResource("5_ydkyq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.18969, 0.335226, -36.1023)
+
+[node name="cloud_2" parent="Node3D" groups=["clouds"] instance=ExtResource("5_ydkyq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.387499, -1.43734, -24.5351)
+
+[node name="cloud_1" parent="Node3D" groups=["clouds"] instance=ExtResource("5_ydkyq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -3.14946)
+
+[node name="tower1" parent="Node3D" groups=["ground"] instance=ExtResource("6_paxwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186973, -2.34378, 0.508074)
+
+[node name="Node3D2" parent="." instance=ExtResource("5_ydkyq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.393773, -2.38419e-07, -14.3413)
+
+[node name="Node3D3" parent="." instance=ExtResource("5_ydkyq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0275507, 0, -17.5895)
+
+[node name="Node3D4" parent="." instance=ExtResource("5_ydkyq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0654449, 2.38419e-07, -21.2972)
+
+[node name="Node3D5" parent="." instance=ExtResource("7_gbagt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -31.1948)
+
+[node name="Node3D6" parent="." instance=ExtResource("8_vkutb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226794, 0, -11.1619)
+
+[node name="Node3D7" parent="." instance=ExtResource("9_ti417")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0357609, 0, -6.93581)
