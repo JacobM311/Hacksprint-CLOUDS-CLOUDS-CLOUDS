@@ -1,7 +1,7 @@
 extends Node3D
 
 var range: float = 2
-var movement_direction = Vector3.FORWARD
+var direction = Vector3.FORWARD
 var end_of_range: float
 var start_of_range: float
 @export var speed: float = 1
@@ -12,10 +12,10 @@ func _ready():
 	end_of_range = global_position.z - range
 
 func _process(delta):
-	global_position += movement_direction * delta * speed
+	global_position += direction * delta * speed
 
 	if global_position.z <= end_of_range or global_position.z >= start_of_range:
-		movement_direction = -movement_direction
+		direction = -direction
 	
 func _on_timer_timeout():
 	queue_free()

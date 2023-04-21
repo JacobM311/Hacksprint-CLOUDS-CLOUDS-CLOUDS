@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ba4btspugshgq"]
 
 [ext_resource type="Script" path="res://Scripts/cloud_static.gd" id="1_4qaic"]
-[ext_resource type="Shader" path="res://Shaders/shader_cloud.gdshader" id="2_qk1wa"]
+[ext_resource type="Shader" path="res://Shaders and Images/shader_cloud.gdshader" id="2_qk1wa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dy1ah"]
 radius = 1.06283
@@ -77,6 +77,5 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cloud/Icosphere001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_y7kle")
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

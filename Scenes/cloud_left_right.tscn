@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://ctmgj6kelqqby"]
 
 [ext_resource type="Script" path="res://Scripts/cloud_left_right.gd" id="2_tb6p2"]
-[ext_resource type="Shader" path="res://Shaders/shader_cloud.gdshader" id="2_xxshf"]
+[ext_resource type="Shader" path="res://Shaders and Images/shader_cloud.gdshader" id="2_xxshf"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_dy1ah"]
-radius = 1.06283
+[sub_resource type="SphereShape3D" id="SphereShape3D_byg6l"]
+radius = 1.16952
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tkq58"]
 render_priority = 0
@@ -54,11 +54,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("2_tb6p2")
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.136364, 0.138383, -5.96068e-09)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0401243, -0.234184, -1.75389e-09)
-shape = SubResource("SphereShape3D_dy1ah")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15962, -0.212682, -6.97723e-09)
+shape = SubResource("SphereShape3D_byg6l")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -77,6 +76,5 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cloud/Icosphere001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_y7kle")
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered" flags=18]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout" flags=18]

@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var movement_direction = Vector3.RIGHT
+@onready var direction = Vector3.RIGHT
 @onready var timer = $Timer
 @export var range: float = 2
 # Called when the node enters the scene tree for the first time.
@@ -9,15 +9,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	global_position += movement_direction * delta
+	global_position += direction * delta
 	if global_position.x >= range:
-		movement_direction = -movement_direction
+		direction = -direction
 	if global_position.x <= -range:
-		movement_direction = -movement_direction
-
-func _on_area_3d_area_entered():
-	pass
-	
+		direction = -direction
 
 func _on_timer_timeout():
 	queue_free()
