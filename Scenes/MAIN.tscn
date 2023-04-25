@@ -1,16 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://tmfmph54d6dl"]
+[gd_scene load_steps=16 format=3 uid="uid://clcgtn7gm461b"]
 
-[ext_resource type="Script" path="res://Scripts/MAIN.gd" id="1_u1enu"]
-[ext_resource type="Texture2D" uid="uid://dydlav4x743vk" path="res://Shaders and Images/086_hdrmaps_com_free.exr" id="2_4k2ss"]
+[ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_lgnql"]
+[ext_resource type="Texture2D" uid="uid://dydlav4x743vk" path="res://Shaders and Images/hdrmap.exr" id="2_nahfn"]
 [ext_resource type="PackedScene" uid="uid://dw37ns72pp1wt" path="res://Scenes/player.tscn" id="3_ep3dt"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="4_wxqjs"]
 [ext_resource type="PackedScene" uid="uid://bswgboxvk8pbl" path="res://Scenes/skyscraper.tscn" id="6_paxwa"]
 [ext_resource type="PackedScene" uid="uid://ctmgj6kelqqby" path="res://Scenes/cloud_left_right.tscn" id="7_gbagt"]
 [ext_resource type="PackedScene" uid="uid://dnusnahhyrmip" path="res://Scenes/cloud_up_down.tscn" id="8_vkutb"]
+[ext_resource type="PackedScene" uid="uid://ba4btspugshgq" path="res://Scenes/cloud_static.tscn" id="9_ldtns"]
 [ext_resource type="PackedScene" uid="uid://cnr7jf01gjv47" path="res://Scenes/cloud_back_forth.tscn" id="9_ti417"]
+[ext_resource type="PackedScene" uid="uid://bv4jaoaprnhqi" path="res://Scenes/checkpont_area.tscn" id="10_gbh8j"]
+[ext_resource type="AudioStream" uid="uid://de0ssq7f86vnq" path="res://Audio/Wah_wah.ogg" id="11_wqkqs"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tstiv"]
-panorama = ExtResource("2_4k2ss")
+panorama = ExtResource("2_nahfn")
 
 [sub_resource type="Sky" id="Sky_i8ci6"]
 sky_material = SubResource("PanoramaSkyMaterial_tstiv")
@@ -21,23 +24,26 @@ sky = SubResource("Sky_i8ci6")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_elya0"]
+size = Vector3(5.26246, 0.276797, 129.625)
+
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_u1enu")
+script = ExtResource("1_lgnql")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o61md")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(0.909127, 0.360716, -0.20826, -2.6087e-08, 0.5, 0.866025, 0.416519, -0.787327, 0.454563, -2.81013, 3.73546, 36.1351)
 shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("3_ep3dt")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 1.17, 0)
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.966543, 0.399433)
 jump_height = 6.0
 speed = 2.5
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.06635, 1.34089, 0)
+transform = Transform3D(-4.31497e-08, -0.159795, 0.98715, -6.98486e-09, 0.98715, 0.159795, -1, 0, -4.37114e-08, 5.06635, 2.49104, 0)
 script = ExtResource("4_wxqjs")
 player = NodePath("../player")
 
@@ -45,13 +51,56 @@ player = NodePath("../player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186973, -2.34378, 0.508074)
 
 [node name="Node3D" parent="." instance=ExtResource("9_ti417")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.202629, 0, -4.54391)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0269339, 0, -23.8085)
 
 [node name="Node3D2" parent="." instance=ExtResource("8_vkutb")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.378535, 1.65478, -7.82789)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.016665, 2.38349, -9.68039)
 
 [node name="Node3D3" parent="." instance=ExtResource("8_vkutb")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.470027, 5.13941, -10.9725)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.237855, 5.19995, -12.0833)
 
 [node name="Node3D4" parent="." instance=ExtResource("7_gbagt")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.332956, 4.15535, -13.9692)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0885147, 3.9079, -16.1257)
+
+[node name="Node3D5" parent="." instance=ExtResource("9_ldtns")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0764599, 2.12373, -3.42252)
+
+[node name="Node3D6" parent="." instance=ExtResource("6_paxwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15946, -2.0983, -28.174)
+
+[node name="Area3D" parent="." instance=ExtResource("10_gbh8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0294001, 1.60874, -27.8321)
+
+[node name="Area3D2" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.38478, -21.1423)
+shape = SubResource("BoxShape3D_elya0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0149612, 4.76837e-07, -0.0274029)
+stream = ExtResource("11_wqkqs")
+
+[node name="Area3D3" parent="." instance=ExtResource("10_gbh8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.408439, 0.72075, 1.14092)
+
+[node name="Node3D7" parent="." instance=ExtResource("9_ti417")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -36.394)
+
+[node name="Node3D8" parent="." instance=ExtResource("7_gbagt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.09639, -41.999)
+
+[node name="Node3D9" parent="." instance=ExtResource("9_ldtns")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -45.904)
+
+[node name="Node3D10" parent="." instance=ExtResource("9_ldtns")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -2.6282, -51.044)
+
+[node name="Node3D11" parent="." instance=ExtResource("8_vkutb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -2.00549, -55.3341)
+
+[node name="Node3D12" parent="." instance=ExtResource("6_paxwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.34503, -58.8274)
+
+[connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_2_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

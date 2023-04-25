@@ -54,7 +54,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("1_4qaic")
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.136364, 0.138383, -5.96068e-09)
+transform = Transform3D(0.432211, 0, 0, 0, 0.216215, 0, 1.77636e-15, 0, 0.741789, -0.132766, 0.826028, 0.134609)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0401243, -0.234184, -1.75389e-09)

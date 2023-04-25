@@ -1,23 +1,22 @@
 extends Node3D
 
-@onready var direction = Vector3.UP
+@export var speed: float = 1
 @onready var timer = $Timer
-@export var range: float = 2
-var starting_pos = global_position.y
-var end_of_range = starting_pos - range
-var start_of_range = starting_pos + range
+
+var range: float = 2
+var direction = Vector3.UP
+var end_of_range: float
+var start_of_range: float
 
 func _ready():
-	pass
+	start_of_range = global_position.y + range
+	end_of_range = global_position.y - range
 
 func _process(delta):
-	global_position += direction * delta
-	if global_position.y >= start_of_range:
+	global_position += direction * delta * speed
+
+	if global_position.y <= end_of_range or global_position.y >= start_of_range:
 		direction = -direction
-		global_position.y = start_of_range
-	if global_position.y <= end_of_range:
-		direction = -direction
-		global_position.y = end_of_range
 
 func _on_timer_timeout():
 	queue_free()
